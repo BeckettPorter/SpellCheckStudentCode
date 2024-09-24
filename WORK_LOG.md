@@ -1,9 +1,9 @@
 Name: YOUR NAME HERE
 
-| Date    |  Time  |                                     Update |
-|:--------|:------:|-------------------------------------------:|
-| April 5 | 9-10pm | I tried to write abstract, efficient code. |
-|         |        |                                            |
+| Date           |    Time     |                                                                                                                                                                                                                                                                                                                                                                                    Update |
+|:---------------|:-----------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| April 5        |   9-10pm    |                                                                                                                                                                                                                                                                                                                                                I tried to write abstract, efficient code. |
+| September 24th | 8:50 - 9:25 | Tyler and I worked on the whiteboards to try to figure out a way to search through the dictionary with binary search. We figured out a way that would likely work and be pretty fast, but it would definitely not be linear time so we're going to rethink it and try again. Maybe some sort of arrayList of arrayLists would work for O(1) lookups but that would get bloated very fast. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.
