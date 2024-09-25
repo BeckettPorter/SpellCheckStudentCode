@@ -36,9 +36,18 @@ public class SpellCheck {
 
         for (int i = 0; i < text.length; i++)
         {
-            if (!stringIntMap.containsKey(text[i]) && !misspelledWords.get(text[i]))
+            if (!stringIntMap.containsKey(text[i]))
             {
-                misspelledWords.put(text[i], true);
+                if (!(misspelledWords.containsKey(text[i]) && misspelledWords.get(text[i])))
+                {
+                    misspelledWords.put(text[i], false);
+                    if (!misspelledWords.get(text[i]))
+                    {
+                        misspelledWords.replace(text[i], true);
+                    }
+                }
+
+
             }
         }
 
