@@ -23,47 +23,48 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary)
     {
-        // Use a helper method I made to get a LinkedHashList of all the misspelled words.
-        LinkedHashSet<String> misspelledWords = getMisspelledWords(text, dictionary);
 
-        // Make a new string array with the length of the number of misspelled words.
-        String[] ar = new String[misspelledWords.size()];
 
-        // Had to use an enhanced for loop here because LinkedHashSets don't have a .get(int index) method so I have
-        // to do this to get the word at a given index. I don't really know why they don't have a method for this
-        // because it seems like using an enhanced for loop would be doing basically the same thing...
-        int index = 0;
-        for (String s : misspelledWords)
-        {
-            ar[index] = s;
-            index++;
-        }
-
-        // Return the new String[] array
-        return ar;
+        return;
     }
 
-    // Method that returns a LinkedHashList of all the misspelled words in a given text with a given dictionary.
-    private static LinkedHashSet<String> getMisspelledWords(String[] text, String[] dictionary)
+    private TSTNode[] convertDictionaryToTST(String[] dictionary)
     {
-        // Make a hash set of all the dictionary words for O(1) lookup times. It doesn't need to be a LinkedHashSet
-        // (this would be an ordered hash set) because the order doesn't matter when finding if it contains a word.
-        HashSet<String> dictionaryHashSet = new HashSet<>(Arrays.asList(dictionary));
+        TSTNode root = new TSTNode(false, dictionary[0].charAt(0));
 
-        // Use a linked hash set because it doesn't allow duplicate entries but is also ordered since we have to
-        // return the list of the misspelled words in order.
-        LinkedHashSet<String> misspelledWords = new LinkedHashSet<>();
 
-        // Go through each word in the text
-        for (String word : text)
+        for (int i = 0; i < dictionary.length; i++)
         {
-            // If the word is not found in the dictionary
-            if (!dictionaryHashSet.contains(word))
+            String word = dictionary[i];
+            for (int j = 0; j < word.length(); j++)
             {
-                // Then add to the misspelled words
-                misspelledWords.add(word);
+                char charToCompare = word.charAt(j);
+
+                word = word.substring(1);
+
+                // This means the char is the last letter of the word, meaning it is a word
+                if (word.equals(String.valueOf(charToCompare)))
+                {
+                    node.setNextNode(1, new TSTNode(true, charToCompare));
+                    break;
+                }
+
+                // CharToCompare is the current char we are checking
+                // CurrentChar is the char from the node we are checking to see if the charToCompare will pass through.
+
+                if (charToCompare < currentChar)
+                {
+                    node.setNextNode(0, new TSTNode(false, charToCompare));
+                } else if (charToCompare > currentChar)
+                {
+                    node.setNextNode(2, new TSTNode(false, charToCompare));
+                } else
+                {
+                    node.setNextNode(1, new TSTNode(false, charToCompare));
+                }
             }
         }
-        return misspelledWords;
+
+        return;
     }
 }
