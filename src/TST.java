@@ -17,8 +17,6 @@ public class TST
 
     public void insert(TSTNode node, String word, int index)
     {
-        int desiredIndex;
-
         // Base case, check if index is word length
         if (index == word.length() - 1)
         {
@@ -26,29 +24,16 @@ public class TST
             return;
         }
 
+        int nextIndex = getNextIndex(node, word, index);
 
-        if (word.charAt(index) < node.getCharacter())
-        {
-            desiredIndex = 0;
-        }
-        else if (word.charAt(index) > node.getCharacter())
-        {
-            desiredIndex = 2;
-        }
-        else
-        {
-            desiredIndex = 1;
-        }
-
-        TSTNode desiredNode = node.getNextNodes()[desiredIndex];
+        TSTNode desiredNode = node.getNextNodes()[nextIndex];
 
         if (desiredNode == null)
         {
-            insert(new TSTNode(false, word.charAt(index)), word, index + 1);
-            return;
+            desiredNode = new TSTNode(false, word.charAt(index));
         }
 
-        if (desiredIndex == 1)
+        if (nextIndex == 1)
         {
             insert(desiredNode, word, index + 1);
         }
@@ -65,8 +50,46 @@ public class TST
     }
 
 
+
     public boolean contains(String word)
     {
-        return false;
+        return contains(root, word, 0);
+    }
+
+
+    public boolean contains(TSTNode node, String word, int index)
+    {
+        if (index == word.length() - 1)
+        {
+            return node.isWord();
+        }
+
+        TSTNode desiredNode = node.getNextNodes()[getNextIndex(node, word, index)];
+
+        if (desiredNode == null)
+        {
+            return false;
+        }
+
+        return contains(desiredNode, word, index + 1);
+    }
+
+
+    private static int getNextIndex(TSTNode node, String word, int index)
+    {
+        int nextIndex;
+        if (word.charAt(index) < node.getCharacter())
+        {
+            nextIndex = 0;
+        }
+        else if (word.charAt(index) > node.getCharacter())
+        {
+            nextIndex = 2;
+        }
+        else
+        {
+            nextIndex = 1;
+        }
+        return nextIndex;
     }
 }

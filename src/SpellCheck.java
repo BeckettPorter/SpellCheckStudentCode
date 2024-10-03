@@ -23,20 +23,41 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary)
     {
-        addDictionaryToTST(dictionary);
-
-
-        return new String[3];
-    }
-
-    private void addDictionaryToTST(String[] dictionary)
-    {
         TST TSTTree = new TST(dictionary[0]);
 
+        addDictionaryToTST(dictionary, TSTTree);
+
+
+        return getMisspelledWords(text, TSTTree);
+    }
+
+    private void addDictionaryToTST(String[] dictionary, TST tree)
+    {
         for (String word : dictionary)
         {
-            TSTTree.insert(word);
+            tree.insert(word);
         }
     }
 
+    private String[] getMisspelledWords(String[] text, TST tree)
+    {
+        ArrayList<String> arList = new ArrayList<>();
+
+        for (String word : text)
+        {
+            if (!tree.contains(word))
+            {
+                arList.add(word);
+            }
+        }
+
+        String[] ar = new String[arList.size()];
+
+        for (int i = 0; i < arList.size(); i++)
+        {
+            ar[i] = arList.get(i);
+        }
+
+        return ar;
+    }
 }
