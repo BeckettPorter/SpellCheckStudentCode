@@ -23,48 +23,20 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary)
     {
+        addDictionaryToTST(dictionary);
 
 
-        return;
+        return new String[3];
     }
 
-    private TSTNode[] convertDictionaryToTST(String[] dictionary)
+    private void addDictionaryToTST(String[] dictionary)
     {
-        TSTNode root = new TSTNode(false, dictionary[0].charAt(0));
+        TST TSTTree = new TST(dictionary[0]);
 
-
-        for (int i = 0; i < dictionary.length; i++)
+        for (String word : dictionary)
         {
-            String word = dictionary[i];
-            for (int j = 0; j < word.length(); j++)
-            {
-                char charToCompare = word.charAt(j);
-
-                word = word.substring(1);
-
-                // This means the char is the last letter of the word, meaning it is a word
-                if (word.equals(String.valueOf(charToCompare)))
-                {
-                    node.setNextNode(1, new TSTNode(true, charToCompare));
-                    break;
-                }
-
-                // CharToCompare is the current char we are checking
-                // CurrentChar is the char from the node we are checking to see if the charToCompare will pass through.
-
-                if (charToCompare < currentChar)
-                {
-                    node.setNextNode(0, new TSTNode(false, charToCompare));
-                } else if (charToCompare > currentChar)
-                {
-                    node.setNextNode(2, new TSTNode(false, charToCompare));
-                } else
-                {
-                    node.setNextNode(1, new TSTNode(false, charToCompare));
-                }
-            }
+            TSTTree.insert(word);
         }
-
-        return;
     }
+
 }

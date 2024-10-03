@@ -30,4 +30,14 @@ public class TSTNode
     {
         this.nextNodes[index] = nodeToAdd;
     }
+
+    public char getCharacter()
+    {
+        return character;
+    }
+
+    public void setCharacter(char character)
+    {
+        this.character = character;
+    }
 }
