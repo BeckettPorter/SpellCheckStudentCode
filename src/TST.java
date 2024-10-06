@@ -18,7 +18,7 @@ public class TST
     public void insert(TSTNode node, String word, int index)
     {
         // Base case, check if index is word length
-        if (index == word.length() - 1)
+        if (index == word.length())
         {
             node.setWord(true);
             return;
@@ -60,7 +60,7 @@ public class TST
 
     public boolean contains(TSTNode node, String word, int index)
     {
-        if (index == word.length() - 1)
+        if (index == word.length())
         {
             return node.isWord();
         }
@@ -72,7 +72,14 @@ public class TST
             return false;
         }
 
-        return contains(desiredNode, word, index + 1);
+        if (getNextIndex(node, word, index) == 1)
+        {
+            return contains(desiredNode, word, index + 1);
+        }
+        else
+        {
+            return contains(desiredNode, word, index);
+        }
     }
 
 
