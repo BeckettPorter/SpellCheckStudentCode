@@ -34,6 +34,7 @@ public class SpellCheck {
         // Add every word in the dictionary to the TST or trie.
         for (String word : dictionary)
         {
+            // Check to either use Tries or TSTs
             if (useTSTMethod)
             {
                 tst.insert(word);
@@ -47,6 +48,7 @@ public class SpellCheck {
         // If the tst doesn't contain the word from the text, add it to misspelled words.
         for (String word : text)
         {
+            // Another check to see if using Tries or TSTs
             if (useTSTMethod)
             {
                 if (!tst.contains(word))
@@ -66,6 +68,7 @@ public class SpellCheck {
             }
         }
 
+        // Change the LinkedHashSet to an array of strings to return it.
         return misspelledWords.toArray(new String[misspelledWords.size()]);
     }
 }

@@ -1,16 +1,18 @@
 public class TSTNode
 {
+    // Instance variables
     private boolean isWord;
     private TSTNode[] nextNodes = new TSTNode[3];
     private char character;
 
-
+    // Constructor that sets if it is a word or not and sets the character.
     public TSTNode(boolean isWord, char c)
     {
         this.isWord = isWord;
         this.character = c;
     }
 
+    // Getters and Setters
     public boolean isWord()
     {
         return isWord;
