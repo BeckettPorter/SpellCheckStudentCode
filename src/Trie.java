@@ -18,7 +18,7 @@ public class Trie
     public void insert(TrieNode node, String word, int index)
     {
         // Base case, check if index is word length
-        if (index == word.length() - 1)
+        if (index == word.length())
         {
             node.setWord(true);
             return;
@@ -48,9 +48,8 @@ public class Trie
 
     public boolean contains(TrieNode node, String word, int index)
     {
-        if (index == word.length() - 1)
+        if (index == word.length())
         {
-//            System.out.println(word + "AAAAAAA");
             return node.isWord();
         }
 
@@ -67,6 +66,6 @@ public class Trie
 
     private static int getNextIndex(String word, int index)
     {
-        return word.charAt(index) - ' ';
+        return word.charAt(index);
     }
 }
