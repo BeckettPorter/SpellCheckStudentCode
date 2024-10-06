@@ -31,6 +31,7 @@ public class TST
         if (desiredNode == null)
         {
             desiredNode = new TSTNode(false, word.charAt(index));
+            node.setNextNode(nextIndex, desiredNode);
         }
 
         if (nextIndex == 1)

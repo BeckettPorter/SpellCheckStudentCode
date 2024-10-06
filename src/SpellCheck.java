@@ -23,41 +23,46 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary)
     {
-        TST TSTTree = new TST(dictionary[0]);
+        // Set this to true to set it to useTST instead of tries
+        boolean useTSTMethod = false;
 
-        addDictionaryToTST(dictionary, TSTTree);
+        Set<String> misspelledWords = new HashSet<>();
+        TST tst = new TST(dictionary[0]);
+        Trie trie = new Trie(dictionary[0]);
 
 
-        return getMisspelledWords(text, TSTTree);
-    }
-
-    private void addDictionaryToTST(String[] dictionary, TST tree)
-    {
+        // Add every word in the dictionary to the TST or trie.
         for (String word : dictionary)
         {
-            tree.insert(word);
-        }
-    }
-
-    private String[] getMisspelledWords(String[] text, TST tree)
-    {
-        ArrayList<String> arList = new ArrayList<>();
-
-        for (String word : text)
-        {
-            if (!tree.contains(word))
+            if (useTSTMethod)
             {
-                arList.add(word);
+                tst.insert(word);
+            }
+            else
+            {
+                trie.insert(word);
             }
         }
 
-        String[] ar = new String[arList.size()];
-
-        for (int i = 0; i < arList.size(); i++)
+        // If the tst doesn't contain the word from the text, add it to misspelled words.
+        for (String word : text)
         {
-            ar[i] = arList.get(i);
+            if (useTSTMethod)
+            {
+                if (!tst.contains(word))
+                {
+                    misspelledWords.add(word);
+                }
+            }
+            else
+            {
+                if (!trie.contains(word))
+                {
+                    misspelledWords.add(word);
+                }
+            }
         }
 
-        return ar;
+        return misspelledWords.toArray(new String[misspelledWords.size()]);
     }
 }
