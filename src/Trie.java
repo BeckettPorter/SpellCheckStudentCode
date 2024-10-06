@@ -24,6 +24,7 @@ public class Trie
             return;
         }
 
+
         int nextIndex = getNextIndex(word, index);
 
         TrieNode desiredNode = node.getNextNodes()[nextIndex];
@@ -49,6 +50,7 @@ public class Trie
     {
         if (index == word.length() - 1)
         {
+//            System.out.println(word + "AAAAAAA");
             return node.isWord();
         }
 
@@ -65,6 +67,6 @@ public class Trie
 
     private static int getNextIndex(String word, int index)
     {
-        return word.charAt(index) - 'A';
+        return word.charAt(index) - ' ';
     }
 }

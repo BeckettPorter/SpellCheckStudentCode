@@ -1,7 +1,7 @@
 public class TrieNode
 {
     private boolean isWord;
-    private TrieNode[] nextNodes = new TrieNode[26];
+    private TrieNode[] nextNodes = new TrieNode[102];
     private char character;
 
 

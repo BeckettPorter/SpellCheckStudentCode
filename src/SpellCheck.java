@@ -26,7 +26,7 @@ public class SpellCheck {
         // Set this to true to set it to useTST instead of tries
         boolean useTSTMethod = false;
 
-        Set<String> misspelledWords = new HashSet<>();
+        LinkedHashSet<String> misspelledWords = new LinkedHashSet<>();
         TST tst = new TST(dictionary[0]);
         Trie trie = new Trie(dictionary[0]);
 
@@ -58,7 +58,10 @@ public class SpellCheck {
             {
                 if (!trie.contains(word))
                 {
-                    misspelledWords.add(word);
+                    if (misspelledWords.add(word))
+                    {
+                        System.out.println(word);
+                    }
                 }
             }
         }
