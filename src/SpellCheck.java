@@ -24,7 +24,7 @@ public class SpellCheck {
     public String[] checkWords(String[] text, String[] dictionary)
     {
         // Set this to true to set it to useTST instead of tries
-        boolean useTSTMethod = false;
+        boolean useTSTMethod = true;
 
         LinkedHashSet<String> misspelledWords = new LinkedHashSet<>();
         TST tst = new TST(dictionary[0]);
